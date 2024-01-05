@@ -1,0 +1,287 @@
+﻿ @model List<ECommerse.Models.Product>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+
+        .section1 {
+            width: 400px;
+            height: 80vh; /* %80 yükseklik */
+            padding: 20px;
+            box-sizing: border-box;
+            margin-right: 20px;
+            overflow-y: auto; /* Kartların sığması için scrollbar ekleyebilirsiniz. */
+        }
+
+        .section2 {
+            width: 800px;
+            height: 80vh; /* %80 yükseklik */
+            padding: 20px;
+            box-sizing: border-box;
+            margin-right: 20px;
+            overflow-y: auto; /* Kartların sığması için scrollbar ekleyebilirsiniz. */
+        }
+
+        .card {
+            display: flex;
+            margin-bottom: 20px;
+            background-color: #fff;
+            flex-direction: row;
+            justify-content: space-evenly;
+            border-radius: 8px;
+            background-color: lightgrey;
+            padding: 4px;
+            cursor: pointer;
+        }
+        .card:hover{
+                background-color: #f0f0c5;
+            }
+
+            .card img {
+                width: 40px;
+                height: 40px;
+                border-radius: 5px;
+                margin-right: 10px;
+            }
+            
+
+        .card-content {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .card-green {
+            width: 100%;
+            height: 280px;
+            background-color: #fff;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: flex;
+            border: 1px solid black;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+            .card-green img {
+                width: 30%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 5px;
+            }
+
+        .card-green-content {
+            width: 65%;
+            display: flex;
+            flex-direction: column;
+            margin-left: 10px;
+            /* Kart içindeki içerik ile resim arasında bir boşluk bırakmak için */
+            margin-top: 40px;
+        }
+
+        .card-green button {
+            width: 100%;
+            padding: 5px;
+            background-color: #17a2b8; /* btn-info rengi */
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="section1">
+            <!-- Kartlar -->
+            <div class="card">
+                <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvMQ_IoM1XBfv63HKeJ6FeU6eq53_4V0cITA&usqp=CAU' 
+                     alt="Teknoloji Resmi" />
+                <div class="card-content">
+                    <h6>Teknoloji</h6>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src='https://w7.pngwing.com/pngs/170/879/png-transparent-clothing-fashion-dress-woman-creative-fashion-icon-fashion-monochrome-fictional-character-thumbnail.png' 
+                     alt="Giyim Resmi" />
+                <div class="card-content">
+                    <h6>Moda</h6>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src='https://w7.pngwing.com/pngs/646/532/png-transparent-necklace-necklace-fashion-chain-fashion-accessory.png' alt="Aksesuar Resmi" />
+                <div class="card-content">
+                    <h6>Aksesuar</h6>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzE-RKysm3FnJxYMbKuxves9fnOHLmE28Vxw&usqp=CAU'
+                     alt="Ev Yaşam Resmi" />
+                <div class="card-content">
+                    <h6>Ev</h6>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPA9E9FJGpXISokrAISatFMOg6lZrnlmjM2w&usqp=CAU' alt="Spor Resmi" />
+                <div class="card-content">
+                    <h6>Spor</h6>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src='https://www.bbstasarim.com.tr/uploads-165437-150ml-cam-buzlu-losyon-%C5%9Fi%C5%9Fesi-do%C4%9Fal-ah%C5%9Fap-bambu-4-img.jpg' 
+                     alt="Cilt Bakım Resmi" />
+                <div class="card-content">
+                    <h6>Ciltbakım</h6>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-_kvIkwuhHPDVe5cfm9PUDQFNlokivKAA7g&usqp=CAU' alt="Beyaz Eşya Resmi" />
+                <div class="card-content">
+                    <h6>Beyaz Eşya</h6>
+                </div>
+            </div>
+        </div>
+        <div class="section2">
+            <!-- Yeşil Kısım Kartlar -->
+            <div class="search-container">
+                <input type="text" class="search-input" id="searchInput" placeholder="Ürün ara...">
+                <button onclick="searchProducts()">Ara</button>
+            </div>
+            @if (Model != null && Model.Any())
+            {
+
+                @foreach (var product in Model)
+                {
+                    <div class="card-green">
+                        <img src="@product.ProductImgUrl" alt="@product.ProductName" />
+                        <div class="card-green-content">
+                            <p>@product.ProductName</p>
+                            <p>Fiyat: $@product.ProductPrice</p>
+                            <p>Star: @product.ProductStar</p>
+
+                           Category: <span>@product.ProductCategory</span>
+
+                            <button class="btn btn-info" onclick="verikaydet('@product.ProductName', '@product.ProductCategory', '@product.ProductImgUrl', '@product.ProductFeatures', '@product.ProductPrice', '@product.ProductStar')">Sepete Ekle</button>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p>Üzgünüz, ürün bulunamadı.</p>
+            }
+        </div>
+    </div>
+</body>
+
+<script>
+
+    // JavaScript ile kategoriye tıklama olayını dinle
+    document.querySelectorAll('.section1 .card').forEach(card => {
+        card.addEventListener('click', function () {
+            // Seçilen kategoriyi al
+            var selectedCategory = this.querySelector('.card-content h6').innerText;
+
+            // Tüm kartlardan "selected" sınıfını kaldır
+            document.querySelectorAll('.section1 .card').forEach(card => {
+                card.classList.remove('selected');
+            });
+
+            // Seçilen karta "selected" sınıfını ekle
+            this.classList.add('selected');
+
+            // Seçilen kategoriye ait ürün kartlarını göster, diğerlerini gizle
+            document.querySelectorAll('.section2 .card-green').forEach(card => {
+                var cardCategory = card.querySelector('.card-green-content span').innerText;
+                console.log(cardCategory)
+                // Eğer seçilen kategoriye aitse göster, değilse gizle
+                card.style.display = cardCategory === selectedCategory ? 'flex' : 'none';
+            });
+        });
+    });
+    function searchProducts() {
+        var searchInput = document.getElementById('searchInput').value.toLowerCase();
+        console.log(searchInput)
+        document.querySelectorAll('.card-green').forEach(card => {
+            var productName = card.querySelector('.card-green-content p:first-child').innerText.toLowerCase();
+            console.log(productName)
+
+            if (productName.includes(searchInput) ) {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+    function verikaydet(productName, productCategory, productImgUrl, productFeatures, productPrice, productStar) {
+         console.log("girdi")
+        // Verileri bir JavaScript objesine ata
+        var productData = {
+            ProductName: productName,
+            ProductCategory: productCategory,
+            ProductImgUrl: productImgUrl,
+            ProductFeatures: productFeatures,
+            ProductPrice: productPrice,
+            ProductStar: productStar
+        };
+
+        // API endpoint'inin URL'si
+        var apiUrl = 'http://localhost:5280/api/Basket';
+
+        // API'ye POST isteği gönder
+        fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(productData)
+        })
+            .then(response => {
+                if (response.ok) {
+                    // Başarılı cevap durumunda alert göster
+                    alert('Ürün başarıyla sepete eklendi!');
+                } else {
+                    // Hata durumunda alert göster
+                    alert('Ürün eklenirken bir hata oluştu.');
+                }
+            })
+            .catch(error => {
+                // Hata durumunda alert göster
+                alert('Ürün eklenirken bir hata oluştu: ' + error);
+            });
+    }
+
+</script>
+
+</html>

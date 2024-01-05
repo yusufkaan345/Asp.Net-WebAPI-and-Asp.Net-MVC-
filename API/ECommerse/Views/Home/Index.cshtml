@@ -1,0 +1,100 @@
+﻿<style>
+    .img-container {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* ya da "contain" kullanabilirsiniz */
+        border-radius: 20px; /* Kenar yuvarlaklığı ekleyin */
+    }
+
+    .image1 {
+        width: 600px;
+        height: 400px;
+        position: relative;
+    }
+
+    .image1-text {
+        position: absolute;
+        top: 50%;
+        left: 20%;
+        transform: translate(-20%, -50%);
+        color: black;
+        font-size: 36px;
+        font-weight: 400;
+    }
+
+    .image2 {
+        width: 600px;
+        height: 400px;
+    }
+
+    .image2-text {
+        position: absolute;
+        top: 30%;
+        left: 67%;
+        transform: translate(-20%, -50%);
+        color: white;
+        font-size: 36px;
+        font-weight: 400;
+    }
+
+    .image3 {
+        width: 1250px;
+        height: 200px;
+    }
+
+</style>
+
+<div class="text-center">
+    <div class="row">
+        <!-- İlk satır, yan yana iki div -->
+        <div class="col-md-6">
+            <div class="mb-3 image1">
+                <img src="https://static.vecteezy.com/system/resources/previews/015/274/894/large_2x/empty-horizontal-picture-frame-on-white-brick-wall-in-modern-living-room-mock-up-interior-in-minimalist-contemporary-style-free-space-for-your-picture-poster-wooden-table-vase-3d-rendering-photo.jpg" class="img-fluid img-container" alt="Image 1" onclick="goToAnotherPage(1)" />
+                <div class="image1-text">
+                    <p>Ev Ürünlerinde</p>
+                    <p>%50 indirimi </p>
+                    <p> kaçırma</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3 image2">
+                <img src="https://media.licdn.com/dms/image/C4D12AQFQpt2rm6Eu2A/article-cover_image-shrink_720_1280/0/1573420320849?e=2147483647&v=beta&t=C6kpfU8fVoXYzSDEQpfybi1enDRff1aRRhQNxFJWXUY" class="img-fluid img-container" alt="Image 2" onclick="goToAnotherPage(2)" />
+                <div class="image2-text">
+                    <p>Yeni Sezon </p>
+                    <!-- Boşluk bırakabilirsiniz -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- İkinci satır, tek div -->
+        <div class="col-md-12">
+            <div class="mb-3 image3">
+                <img src="https://ares.shiftdelete.net/2022/11/Efsane-Kasim.jpg" class="img-fluid img-container" alt="Image 3" onclick="goToAnotherPage(3)" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function goToAnotherPage(imageNumber) {
+        // İlgili resme tıklandığında yapılacak işlemleri burada tanımlayabilirsiniz.
+        // Örneğin, belirli bir sayfaya yönlendirme işlemi:
+        switch (imageNumber) {
+            case 1:
+                window.location.href = "/Product/Index"; // Page1 sayfasına yönlendirme
+                break;
+            case 2:
+                window.location.href = "/Product/Index"; // Page2 sayfasına yönlendirme
+                break;
+            case 3:
+                // Page3 sayfasına yönlendirme
+                break;
+            // Daha fazla case ekleyebilirsiniz.
+            default:
+                break;
+        }
+    }
+</script>

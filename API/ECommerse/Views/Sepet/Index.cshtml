@@ -1,0 +1,137 @@
+﻿@model List<ECommerse.Models.Product>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            max-height: 80vh;
+            overflow-y: hidden; /* Dikey scrollbar'ı gizle, taşma durumunda gösterilecek */
+        }
+
+        .section {
+            width: 730px;
+            margin: 10px;
+            border-radius: 10px;
+            overflow-y: auto; /* Kartların sığması için dikey scrollbar */
+            max-height: 70%; /* İçerik yüksekliği ekranın tamamını kaplamayacak */
+        }
+
+        .section1,
+        .section2 {
+            padding: 10px;
+        }
+
+        .card {
+            margin-top: 30px;
+            width: 100%;
+            height: 220px;
+            background-color: #fff;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: flex;
+            border: 1px solid black;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+            .card img {
+                width: 30%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 5px;
+            }
+
+        .card-content {
+            width: 65%;
+            display: flex;
+            flex-direction: column;
+            margin-left: 10px;
+            margin-top: 40px;
+        }
+
+        .card button {
+            width: 100%;
+            padding: 5px;
+            background-color: #dc3545; /* btn-danger rengi */
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="section section1">
+            <!-- Kart 1 -->
+            @foreach (var product in Model)
+            {
+                <div class="card">
+                    <img src="@product.ProductImgUrl" alt="Product Image" />
+                    <div class="card-content">
+                        <p>@product.ProductName</p>
+                        <p>Fiyat: $@product.ProductPrice</p>
+                        <button class="btn btn-danger" onclick="veriSil('@product.ProductId')">Delete</button>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="section section2">
+            <div class="card" style="margin-top: 100px; margin-left: 160px; width: 300px; height: 150px;">
+                <div class="card-content" style="align-items: center; justify-content: center; margin-left: 40px;">
+                    <p style="font-size: 30px;">Total</p>
+                    <p style="font-size: 20px; color: orange;"> $@Model.Sum(p => p.ProductPrice)</p>
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-success" style="margin-left: 260px; margin-top: 50px;">Sepeti Onayla</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    function veriSil(productId) {
+        // Confirm kullanarak silme işlemi için onay alabilirsiniz
+        var confirmDelete = confirm("Bu ürünü sepetten silmek istediğinizden emin misiniz?");
+
+        if (confirmDelete) {
+            // Silme işlemi için fetch kullanımı
+            fetch(`http://localhost:5280/api/Basket/${productId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                    // Gerekirse başka headerlar ekleyebilirsiniz
+                },
+            })
+                .then(response => {
+                    if (response.ok) {
+                        // Silme başarılıysa sayfayı yenile veya başka bir işlem yapabilirsiniz
+                        location.reload();
+                    } else {
+                        // Silme başarısızsa kullanıcıya hata mesajı gösterebilirsiniz
+                        alert('Ürünü sepetten silme başarısız!');
+                    }
+                })
+                .catch(error => {
+                    // Hata durumunda kullanıcıya bilgi verilebilir
+                    alert('Bir hata oluştu: ' + error.message);
+                });
+        }
+    }
+</script>
+</html>
